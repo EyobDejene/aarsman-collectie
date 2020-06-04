@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aarsman collectie</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body onload="loadSound()";>
+<main>
+    <canvas id="noise" class="noise"></canvas>
+    <div class="wrap">
+        <header>
+            <div class="logo aarsman-logo">
+                <img src="assets/images/aarsmanBox_logo.svg" alt="aarsman logo">
+            </div>
+            <div class="fill-remaining-space"></div>
+            <div class="logo volkskrant">
+                <img src="assets/images/Volkskrant.svg" alt="volkskrant logo">
+            </div>
+        </header>
+
+        <!--<button onclick="playSound();" class="playSound">Play Sound</button>-->
+
+        <div class="element">
+
+        </div>
+
+
+        <div class="footer">
+            <div id="bars"></div>
+            <div class="fill-remaining-space"></div>
+            <ul>
+                <li><a href="">Twitter</a></li>
+                <li><a href="" class="push-right">De Volkskrant</a></li>
+            </ul>
+        </div>
+    </div>
+    <section>
+        <video playsinline autoplay  loop poster="polina.jpg" id="bgvid">
+            <source src="assets/clips/Aarsman_hd_v2.mp4" type="video/mp4">
+        </video>
+    </section>
+
+
+    <div class="cursor-dot-outline"></div>
+    <div class="cursor-dot"></div>
+</main>
+
+<script src="bundle.js"></script>
+<script src="assets/js/aarsman.js"></script>
+<script src="assets/js/noise.js"></script>
+<script src="assets/js/cursor.js"></script>
+<script src="assets/js/soundbar.js"></script>
+<script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+
+</body>
+</html>
