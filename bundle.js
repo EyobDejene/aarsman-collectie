@@ -7,6 +7,11 @@ let Typed = require('typed.js');
 //   smartBackspace: true
 // });
 
+let button = document.querySelector('.btn');
+
+button.addEventListener("click",function() {
+  console.log('clicked');
+});
 },{"typed.js":2}],2:[function(require,module,exports){
 /*!
  * 

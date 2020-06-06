@@ -161,12 +161,14 @@ mouse cursor
     width: 8px;
     height: 8px;
     background-color: #ffffff;
+    z-index: 100;
 }
 
 .cursor-dot-outline {
     width: 40px;
     height: 40px;
     background-color: rgba(255, 255, 255, 0.5);
+    z-index: 100;
 }
 
 
@@ -204,8 +206,97 @@ sound bar
 }
 
 
+.content{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center; /* adjusted */
+    position: relative;
+    width: 35rem;
+    margin: auto;
+}
+
+.container {
+    width: auto;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonWrapper {
+    width: 180px;
+    height: 60px;
+    position: relative;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.btn {
+    width: 180px;
+    height: 60px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    transition: 0.5s ease-in-out;
+    cursor: none;
+    color: white;
+}
+
+svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+
+    animation: loopButton;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.btn:hover {
+    transition: 0.5s ease-in-out;
+    background: rgba(255,255,255,0.5);
+
+}
+
+
+/*.btn:hover svg {*/
+/*stroke-dashoffset: -480;*/
+/*}*/
+
+@keyframes loopButton {
+    from
+    {
+        stroke-dashoffset: 150;
+    }
+    to{
+        stroke-dashoffset: -480;
+    }
+}
+
+.btn span {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: 'Amatic SC', cursive;
+}
+
+.subtitle{
+    width: 25rem;
+    margin: auto;
+}
+
 
 .element{
-    width: 100%;
+    position: relative;
+    width: auto;
     color:#ffffff;
 }
