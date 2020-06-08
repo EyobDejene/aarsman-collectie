@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aarsman collectie</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/normalize.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body onload="loadSound()" onclick="ClickSound()" data-barba="wrapper">
+<main>
+
+    <div class="wrap">
+        <div class="wrapper">
+            <header>
+                <div class="logo aarsman-logo">
+                    <img src="assets/images/aarsmanBox_logo.svg" alt="aarsman logo">
+                </div>
+                <div class="score-wrap">
+                    <div class="score"><span class="found">2</span>/<span class="need">10</span></div>
+                </div>
+                <div class="fill-remaining-space"></div>
+                <div class="logo volkskrant">
+                    <img src="assets/images/Volkskrant.svg" alt="volkskrant logo">
+                </div>
+            </header>
+
+            <div class="page" data-barba="container" data-barba-namespace="page-a">
+
+                <div class="controls">
+                    <button class="zoomIn">+</button>
+                    <div class="slider"><div class="wheel"></div> </div>
+                    <button class="zoomOut">-</button>
+                </div>
+
+
+                <div class="reveal not-visible">
+                    <div class="img"><img src="assets/images/Collectie160303.jpg"></div>
+                    <div class="dashed"></div><span class="text"><p></p></span></div>
+
+                <!--<button onclick="playSound();" class="playSound">Play Sound</button>-->
+                <!--<div class="container">-->
+                    <!--<div class="content">-->
+                    <!--<span class="element">-->
+
+                    <!--</span>-->
+                        <!--<div class="buttonWrapper">-->
+                            <!--<a href="experimental.html" class="btn" onmouseenter="HoverSound();">-->
+                                <!--<svg width="180px" height="60px" viewBox="0 0 180 60" class="border">-->
+                                    <!--<polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />-->
+                                    <!--<polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />-->
+                                <!--</svg>-->
+                                <!--<span>Start Experiment</span>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <section>
+                   <div class="object-subject">
+                       <div class="cameras area area1"></div>
+                       <div class="circle cameras camera1 not-visible"></div>
+                       <div class="cameras area area2"></div>
+                       <div class="circle cameras camera2 not-visible"></div>
+                       <div class="cameras area area3"></div>
+                       <div class="circle cameras camera3 not-visible"></div>
+
+
+                       <div class="bokaal area area4"></div>
+                       <div class="circle area bokaal not-visible"></div>
+
+                       <img src="assets/images/Collectie160303.jpg">
+
+                   </div>
+                    <canvas id="noise" class="noise"></canvas>
+                    <div class="overlayBlack"></div>
+                </section>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div id="bars"></div>
+            <div class="fill-remaining-space"></div>
+
+            <div class="founds-wrap">
+                <div class="circle-found"></div><button class="founds">Gevonden aanwijzingen</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="cursor-dot-outline"></div>
+    <div class="cursor-dot"></div>
+</main>
+<script src='https://unpkg.com/panzoom@9.2.4/dist/panzoom.min.js'></script>
+<!-- unpkg -->
+<script src="https://unpkg.com/@barba/core"></script>
+
+<!-- jsdelivr -->
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/CSSRulePlugin.js"></script>
+<script src="assets/js/mouseProx.js"></script>
+<script src="bundle.js"></script>
+<script src="assets/js/aarsman.js"></script>
+<script src="assets/js/noise.js"></script>
+<script src="assets/js/cursor.js"></script>
+<script src="assets/js/soundbar.js"></script>
+<script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
+
+
+</body>
+</html>
