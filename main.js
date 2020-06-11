@@ -16,13 +16,13 @@
 // });
 
 //initialize options here
-var mprox = new mouseProximity(document.getElementsByClassName('cameras'),
-    {
-  clear: false,
-  origin: 'center',
-  showAttribute: false,
-   //callback can be set here too
-});
+// var mprox = new mouseProximity(document.getElementsByClassName('cameras'),
+//     {
+//   clear: false,
+//   origin: 'center',
+//   showAttribute: false,
+//    //callback can be set here too
+// });
 
 
 let playing_slow = false;
@@ -71,7 +71,7 @@ var doSomething = function(el,distance){
 }
 
 //run the proximity tracker
-mprox.run(doSomething);
+// mprox.run(doSomething);
 
 // //stop the proximity tracker
 // mprox.stop();
@@ -118,45 +118,42 @@ function reveal(state){
   let reveal_image = document.querySelector('.img img');
 
   if(state === 'cameras'){
-    reveal_text.innerHTML = '' +
-        'Die halve bolletjes van glas tegen het plafond' +
-        ' boven de stralende stellen in zwart-wit, zijn dat bewakingscamera’s?' +
-        ' Lekker werken zo.';
+    reveal_text.innerHTML = 'Bewakingscamera’s';
     reveal_image.src= 'assets/images/camera.jpg';
   }
 
   if(state === 'bokaal'){
-    reveal_text.innerHTML = "Binnen treft hij diverse oorkonden en trofeeën aan. ";
+    reveal_text.innerHTML = "Beker";
     reveal_image.src= 'assets/images/bokaal.jpg';
   }
 
   if(state === 'brandkast'){
-    reveal_text.innerHTML = "In de witte muur rechts zit een metalen deur waarachter ooit de brandblusser huisde. Nu is er een plaat op gemonteerd met een nummer dat je moet bellen bij brand. ";
+    reveal_text.innerHTML = "Brandblusser";
     reveal_image.src= 'assets/images/brandkast.jpg';
   }
 
   if(state === 'bloed'){
-    reveal_text.innerHTML = "Als hij met de beker de glazen deur aan diggelen slaat, loopt hij een schrammetje op zijn voorhoofd op";
+    reveal_text.innerHTML = "Schrammetje op zijn voorhoofd";
     reveal_image.src= 'assets/images/bloed.jpg';
   }
 
   if(state === 'vlag'){
-    reveal_text.innerHTML = "Het rode vlaggetje in de vitrinelijst laat hij heel";
+    reveal_text.innerHTML = "Rode vlaggetje";
     reveal_image.src= 'assets/images/vlag.jpg';
   }
 
   if(state === 'lampjes'){
-    reveal_text.innerHTML = "Aan het plafond brandt een bordje met rode redlampjes: de directie wil niet gestoord worden.";
+    reveal_text.innerHTML = "Rode redlampjes";
     reveal_image.src= 'assets/images/lampjes.jpg';
   }
 
   if(state === 'borst'){
-    reveal_text.innerHTML = "Wel een slechte beurt om je moeder boven de linker borstzak een label met je bloedgroep te laten naaien";
+    reveal_text.innerHTML = "Label met je bloedgroep";
     reveal_image.src= 'assets/images/borst.jpg';
   }
 
   if(state === 'militair'){
-    reveal_text.innerHTML = "militant";
+    reveal_text.innerHTML = "Militant";
     reveal_image.src= 'assets/images/militair.jpg';
   }
 
@@ -165,8 +162,14 @@ function reveal(state){
   reveal.classList.remove('not-visible');
   AchievementSound();
   setTimeout(function() {
+    reveal.classList.add('fly');
+  },2000);
+  setTimeout(function() {
     closeReveal();
-  },5000);
+  },3000)
+  // setTimeout(function() {
+  //   closeReveal();
+  // },5000);
 }
 
 
@@ -189,15 +192,18 @@ function closeReveal(){
     let overlay = document.querySelector('.overlayBlack');
       reveal.classList.add('not-visible');
       overlay.classList.remove('overlayActive');
+      reveal.classList.remove('fly');
   }
 }
 
 
+
+// play when page is loaded
 window.addEventListener("load", callback);
 function callback(){
   setTimeout(function() {
     console.log('loaded');
-    backgroundMusic();
+   // backgroundMusic();
   },1000);
 
 }
@@ -249,6 +255,8 @@ function  startGame() {
   let container = document.querySelector('.container');
   container.classList.add('not-visible');
   overlayBlack.classList.remove('overlayActive');
+  let paper = document.querySelector('.paper');
+  paper.classList.remove('closed')
 }
 
 
@@ -268,6 +276,14 @@ function stopAudio() {
     state.add('muted');
     soundwave.classList.add('pause');
   }
-
-
 }
+
+
+let textopener = document.querySelector('.textopener');
+let paper = document.querySelector('.paper');
+let wrap = document.querySelector('.wrap');
+textopener.addEventListener('click',function() {
+  paper.classList.toggle('closed');
+  //wrap.classList.toggle('slide');
+
+});
