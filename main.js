@@ -99,78 +99,96 @@ panzoom(element, {
 
 
 
-let cameras = document.querySelectorAll('.cameras');
-let bokaal = document.querySelectorAll('.bokaal');
-
-
-for(var i = 0; i<bokaal.length; i++) {
-  bokaal[i].addEventListener("click",function() {
-    if (bokaal)
-    {
-      for (var i = 0; i < bokaal.length; i++) {
-        bokaal[i].classList.remove('not-visible');
-      }
-      reveal();
-  }
+let area = document.querySelectorAll('.area');
+for(var i = 0; i<area.length; i++) {
+  console.log(area[i]);
+  area[i].addEventListener("click",function(e) {
+    let areaReveal = this.classList[0];
+    reveal(areaReveal);
   });
 }
 
 
 
-for(var i = 0; i<cameras.length; i++) {
-  cameras[i].addEventListener("click",showCircle);
-}
-function showCircle(e){
-  let cameras = this.classList.contains('cameras');
-  if(cameras)
-  {
-    let camera = document.querySelectorAll('.cameras');
-
-    for(var i = 0; i<camera.length; i++) {
-      camera[i].classList.remove('not-visible');
-      console.log(camera[i])
-    }
-    reveal('camera');
-  }
-
-  //e.classList.toggle('not-visible');
-}
-
-
-
 function reveal(state){
+  console.log(state);
   let reveal = document.querySelector('.reveal');
   let overlay = document.querySelector('.overlayBlack');
   let reveal_text = document.querySelector('.text p');
-  if(state === 'camera'){
+  let reveal_image = document.querySelector('.img img');
+
+  if(state === 'cameras'){
     reveal_text.innerHTML = '' +
         'Die halve bolletjes van glas tegen het plafond' +
         ' boven de stralende stellen in zwart-wit, zijn dat bewakingscamera’s?' +
         ' Lekker werken zo.';
-  }else{
-    reveal_text.innerHTML = "Binnen treft hij diverse oorkonden en trofeeën aan. ";
+    reveal_image.src= 'assets/images/camera.jpg';
   }
-  overlay.classList.add('overlayActive');
-  console.log(reveal);
-  AchievementSound();
-  reveal.classList.remove('not-visible');
-  setTimeout(function() {
 
+  if(state === 'bokaal'){
+    reveal_text.innerHTML = "Binnen treft hij diverse oorkonden en trofeeën aan. ";
+    reveal_image.src= 'assets/images/bokaal.jpg';
+  }
+
+  if(state === 'brandkast'){
+    reveal_text.innerHTML = "In de witte muur rechts zit een metalen deur waarachter ooit de brandblusser huisde. Nu is er een plaat op gemonteerd met een nummer dat je moet bellen bij brand. ";
+    reveal_image.src= 'assets/images/brandkast.jpg';
+  }
+
+  if(state === 'bloed'){
+    reveal_text.innerHTML = "Als hij met de beker de glazen deur aan diggelen slaat, loopt hij een schrammetje op zijn voorhoofd op";
+    reveal_image.src= 'assets/images/bloed.jpg';
+  }
+
+  if(state === 'vlag'){
+    reveal_text.innerHTML = "Het rode vlaggetje in de vitrinelijst laat hij heel";
+    reveal_image.src= 'assets/images/vlag.jpg';
+  }
+
+  if(state === 'lampjes'){
+    reveal_text.innerHTML = "Aan het plafond brandt een bordje met rode redlampjes: de directie wil niet gestoord worden.";
+    reveal_image.src= 'assets/images/lampjes.jpg';
+  }
+
+  if(state === 'borst'){
+    reveal_text.innerHTML = "Wel een slechte beurt om je moeder boven de linker borstzak een label met je bloedgroep te laten naaien";
+    reveal_image.src= 'assets/images/borst.jpg';
+  }
+
+  if(state === 'militair'){
+    reveal_text.innerHTML = "militant";
+    reveal_image.src= 'assets/images/militair.jpg';
+  }
+
+  showCircle(state);
+  overlay.classList.add('overlayActive');
+  reveal.classList.remove('not-visible');
+  AchievementSound();
+  setTimeout(function() {
+    closeReveal();
   },5000);
 }
 
 
+function showCircle(state){
+    let SelectedAreas = document.querySelectorAll('.'+state);
+    for(var i = 0; i< SelectedAreas.length; i++) {
+      SelectedAreas[i].classList.remove('not-visible');
+      SelectedAreas[i].classList.add('disabled');
+      // console.log(SelectedAreas[i])
+      clueFound(SelectedAreas[i]);
+    }
 
-document.querySelector('.reveal').addEventListener('click',closeReveal);
+}
+
 
 function closeReveal(){
   if (document.querySelector('.overlayBlack').classList.contains('overlayActive')){
     // do some stuff
     let reveal = document.querySelector('.reveal');
     let overlay = document.querySelector('.overlayBlack');
-
-    reveal.classList.add('not-visible');
-    overlay.classList.remove('overlayActive');
+      reveal.classList.add('not-visible');
+      overlay.classList.remove('overlayActive');
   }
 }
 
@@ -184,3 +202,72 @@ function callback(){
 
 }
 
+
+checkClues();
+function checkClues() {
+  let clues = document.querySelectorAll('.clue');
+  let countClues = clues.length;
+  let need = document.querySelector('.need');
+  let found = document.querySelector('.found');
+  need.innerHTML = countClues;
+  found.innerHTML = 0;
+
+}
+
+function clueFound(clue) {
+  let found = clue.classList.contains('clue');
+  if(found){
+    setScore();
+  }
+}
+
+function setScore(){
+  let found = document.querySelector('.found');
+  let clues = document.querySelectorAll('.clue');
+  let countClues = clues.length;
+  let value  = Number(found.innerHTML);
+  let valueCheck = value+1;
+    value++;
+    found.innerHTML = value;
+  if(valueCheck < countClues) {
+      ScoreSound();
+  }else {
+    ScoreSound();
+    WipeSound();
+    VictorySound();
+    console.log('found all');
+  }
+
+
+}
+
+// start game
+let startButton = document.querySelector('.start');
+startButton.addEventListener('click',startGame);
+function  startGame() {
+  let overlayBlack = document.querySelector('.overlayBlack');
+  let container = document.querySelector('.container');
+  container.classList.add('not-visible');
+  overlayBlack.classList.remove('overlayActive');
+}
+
+
+
+// controlls audio
+let audio = document.querySelector('.bars-wrap');
+audio.addEventListener('click',stopAudio);
+function stopAudio() {
+  let state = audio.classList;
+  let soundwave = document.querySelector('#bars');
+  if(state.contains('muted')){
+    backgroundMusic();
+    state.remove('muted');
+    soundwave.classList.remove('pause');
+  }else{
+    muteMusic();
+    state.add('muted');
+    soundwave.classList.add('pause');
+  }
+
+
+}

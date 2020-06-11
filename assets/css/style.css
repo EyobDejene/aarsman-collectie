@@ -97,7 +97,7 @@ main {
     margin-left: 2rem;
     font-size: 1.2rem;
     color:#ffffff;
-    /*border:0.1rem solid #ffffff;*/
+    border:1px solid #ffffff;
     align-items: center;
     justify-items: center; /* adjusted */
 }
@@ -127,6 +127,7 @@ header{
     position: relative;
     z-index: 1;
     padding-top: 1rem;
+    pointer-events: none;
 }
 
 header h1{
@@ -227,6 +228,12 @@ mouse cursor
 sound bar
  */
 
+.bars-wrap{
+    height: 2rem;
+    width: 4rem;
+    z-index: 20;
+}
+
 #bars {
     position: absolute;
     height: 14px;
@@ -242,10 +249,15 @@ sound bar
     width: 1px;
     background: #ffffff;
     animation: sound 0ms -800ms linear infinite alternate;
+    -webkit-animation: sound 0ms -800ms linear infinite alternate;
     transform: translateY(50%);
 }
 
-@keyframes sound {
+.pause > *{
+    animation-play-state: paused;
+}
+
+@-webkit-keyframes sound {
     0% {
         opacity: .35;
         height: 3px;
@@ -403,6 +415,11 @@ section:after{
 .not-visible{
     display: none;
 }
+
+.disabled{
+    pointer-events: none;
+}
+
 .circle {
     background: #ffffff;
     border: 2px dot-dash;
@@ -414,6 +431,7 @@ section:after{
     transform: scale(1);
     animation: pulse 2s infinite;
     position: absolute;
+    z-index: 9;
 
 }
 
@@ -437,6 +455,7 @@ section:after{
 
 .area{
     position: absolute;
+    z-index: 10;
 }
 
 .camera1{
@@ -501,8 +520,125 @@ section:after{
     width: 150px;
     left: 36.4%;
     top: 48%;
+    z-index: 3;
+}
+
+
+.brandkast{
+    border-radius: 50%;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    left: 87.4%;
+    top: 35%;
+}
+
+.area5{
+    /*background-color: green;*/
+    height: 502px;
+    width: 246px;
+    left: 76.4%;
+    top: 29%;
+}
+
+
+.bloed{
+    border-radius: 50%;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    left: 49.4%;
+    top: 25%;
+}
+
+.area6{
+    height: 103px;
+    width: 130px;
+    left: 46.4%;
+    top: 25%;
+}
+
+.vlag{
+    border-radius: 50%;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    left: 58.4%;
+    top: 32%;
+}
+
+.area7{
+    height: 63px;
+    width: 60px;
+    left: 58.4%;
+    top: 32%;
+    border-radius: 0;
+    z-index: 3;
+}
+
+
+.lampjes{
+    border-radius: 50%;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    left: 44.4%;
+    top: -1%;
+}
+
+.area8{
+    height: 57px;
+    width: 94px;
+    left: 44.4%;
+    top: -1%;
+    border-radius: 0;
+}
+
+
+.borst{
+    border-radius: 50%;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    left: 51.4%;
+    top: 37%;
+}
+
+.area9{
+
+    height: 57px;
+    width: 74px;
+    left: 50.4%;
+    top: 36%;
+    border-radius: 0;
+    z-index: 3;
+}
+
+
+.militair{
+    border-radius: 50%;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+    left: 49.4%;
+    top: 44%;
 
 }
+
+.area10{
+
+    height: 461px;
+    width: 263px;
+    left: 43.4%;
+    top: 33%;
+    border-radius: 0;
+    z-index: 1;
+}
+
+
+
+
+
 
 
 .page{
@@ -545,7 +681,7 @@ section:after{
 
 .reveal .text p{
     position: absolute;
-    width: 20rem;
+    width: 19rem;
     left: 50%;
     transform: translateX(-50%);
     bottom:-5rem;

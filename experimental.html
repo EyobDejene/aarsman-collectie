@@ -18,7 +18,7 @@
                     <img src="assets/images/aarsmanBox_logo.svg" alt="aarsman logo">
                 </div>
                 <div class="score-wrap">
-                    <div class="score"><span class="found">2</span>/<span class="need">10</span></div>
+                    <div class="score"><span class="found"></span>/<span class="need"></span></div>
                 </div>
                 <div class="fill-remaining-space"></div>
                 <div class="logo volkskrant">
@@ -27,7 +27,27 @@
             </header>
 
             <div class="page" data-barba="container" data-barba-namespace="page-a">
-
+                <div class="container">
+                    <div class="content">
+                    <span class="element">
+                        <h1>SECRETARESSE VAN HET JAAR</h1>
+                        <p class="subtitle">
+                            Analyseer de foto, ik heb mijn blik er al op geworpen.<br>
+                            De taak aan jouw om alles tot in detail te inspecteren.<br>
+                            Zie jij wat ik zie?
+                        </p>
+                        <div class="buttonWrapper">
+                        <a href="#" class="btn start" onmouseenter="HoverSound();">
+                            <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                                <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                            </svg>
+                            <span>Start</span>
+                        </a>
+                        </div>
+                    </span>
+                    </div>
+                </div>
                 <div class="controls">
                     <button class="zoomIn">+</button>
                     <div class="slider"><div class="wheel"></div> </div>
@@ -37,7 +57,9 @@
 
                 <div class="reveal not-visible">
                     <div class="img"><img src="assets/images/Collectie160303.jpg"></div>
-                    <div class="dashed"></div><span class="text"><p></p></span></div>
+                    <div class="dashed"></div>
+                    <span class="text"><p></p></span>
+                </div>
 
                 <!--<button onclick="playSound();" class="playSound">Play Sound</button>-->
                 <!--<div class="container">-->
@@ -59,21 +81,48 @@
                 <section>
                    <div class="object-subject">
                        <div class="cameras area area1"></div>
-                       <div class="circle cameras camera1 not-visible"></div>
+                       <div class="cameras circle camera1 not-visible clue"></div>
                        <div class="cameras area area2"></div>
-                       <div class="circle cameras camera2 not-visible"></div>
+                       <div class="cameras circle camera2 not-visible"></div>
                        <div class="cameras area area3"></div>
-                       <div class="circle cameras camera3 not-visible"></div>
+                       <div class="cameras circle camera3 not-visible"></div>
 
-
+                        <!-- beker -->
                        <div class="bokaal area area4"></div>
-                       <div class="circle area bokaal not-visible"></div>
+                       <div class="bokaal circle area not-visible clue"></div>
+
+                       <!-- brand kast -->
+                       <div class="brandkast area area5"></div>
+                       <div class="brandkast circle area not-visible clue"></div>
+
+                       <!-- bloed hoofd -->
+                       <div class="bloed area area6"></div>
+                       <div class="bloed circle area not-visible clue"></div>
+
+                       <!-- vlag kamer -->
+                       <div class="vlag area area7"></div>
+                       <div class="vlag circle area not-visible clue"></div>
+
+                       <!-- lampjes kamer -->
+                       <div class="lampjes area area8"></div>
+                       <div class="lampjes circle area not-visible clue"></div>
+
+                       <!-- borst label -->
+                       <div class="borst area area9"></div>
+                       <div class="borst circle area not-visible clue"></div>
+
+                       <!-- militair persoon -->
+                       <div class="militair area area10"></div>
+                       <div class="militair circle area not-visible clue"></div>
+
+
+
 
                        <img src="assets/images/Collectie160303.jpg">
 
                    </div>
                     <canvas id="noise" class="noise"></canvas>
-                    <div class="overlayBlack"></div>
+                    <div class="overlayBlack overlayActive"></div>
                 </section>
 
             </div>
@@ -81,7 +130,9 @@
         </div>
 
         <div class="footer">
-            <div id="bars"></div>
+            <div class="bars-wrap">
+                <div id="bars"></div>
+            </div>
             <div class="fill-remaining-space"></div>
 
             <div class="founds-wrap">

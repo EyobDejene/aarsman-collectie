@@ -4,6 +4,9 @@ let steady = "steady";
 let fast = "fast";
 let unlock = "unlock";
 let spy = "background";
+let score = "score";
+let wipe = "wipe";
+let victory = "victory";
 
 
 function loadSound () {
@@ -13,6 +16,9 @@ function loadSound () {
   createjs.Sound.registerSound("assets/audio/chest_fast.mp3", fast);
   createjs.Sound.registerSound("assets/audio/reveal.mp3", unlock);
   createjs.Sound.registerSound("assets/audio/search.mp3", spy);
+  createjs.Sound.registerSound("assets/audio/score.mp3", score);
+  createjs.Sound.registerSound("assets/audio/wipe.mp3", wipe);
+  createjs.Sound.registerSound("assets/audio/victory.mp3", victory);
 }
 
 
@@ -28,6 +34,17 @@ function AchievementSound() {
   createjs.Sound.play(unlock);
 }
 
+function ScoreSound() {
+  createjs.Sound.play(score);
+}
+
+function  WipeSound() {
+  createjs.Sound.play(wipe);
+}
+
+function  VictorySound() {
+  createjs.Sound.play(victory);
+}
 
 function backgroundMusic() {
   let background = createjs.Sound.play(spy);
@@ -35,6 +52,9 @@ function backgroundMusic() {
   background.volume = 0.5;
 }
 
+function muteMusic() {
+  createjs.Sound.stop(spy);
+}
 
 
 
