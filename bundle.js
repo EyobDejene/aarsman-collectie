@@ -124,7 +124,7 @@ function reveal(state){
   }
 
   if(state === 'bokaal'){
-    reveal_text.innerHTML = "Beker";
+    reveal_text.innerHTML = "De beker";
     reveal_image.src= 'assets/images/bokaal.jpg';
   }
 
@@ -139,7 +139,7 @@ function reveal(state){
   }
 
   if(state === 'vlag'){
-    reveal_text.innerHTML = "Rode vlaggetje";
+    reveal_text.innerHTML = "Bordje met rode vlaggetje";
     reveal_image.src= 'assets/images/vlag.jpg';
   }
 
@@ -149,7 +149,7 @@ function reveal(state){
   }
 
   if(state === 'borst'){
-    reveal_text.innerHTML = "Label met je bloedgroep";
+    reveal_text.innerHTML = "Bloedgroep";
     reveal_image.src= 'assets/images/borst.jpg';
   }
 
@@ -167,6 +167,7 @@ function reveal(state){
   },2000);
   setTimeout(function() {
     closeReveal();
+    showHighlight(state);
   },3000)
   // setTimeout(function() {
   //   closeReveal();
@@ -175,7 +176,7 @@ function reveal(state){
 
 
 function showCircle(state){
-    let SelectedAreas = document.querySelectorAll('.'+state);
+    let SelectedAreas = document.querySelectorAll('.object-subject .'+state);
     for(var i = 0; i< SelectedAreas.length; i++) {
       SelectedAreas[i].classList.remove('not-visible');
       SelectedAreas[i].classList.add('disabled');
@@ -204,7 +205,7 @@ window.addEventListener("load", callback);
 function callback(){
   setTimeout(function() {
     console.log('loaded');
-   // backgroundMusic();
+    backgroundMusic();
   },1000);
 
 }
@@ -254,10 +255,14 @@ startButton.addEventListener('click',startGame);
 function  startGame() {
   let overlayBlack = document.querySelector('.overlayBlack');
   let container = document.querySelector('.container');
-  container.classList.add('not-visible');
-  overlayBlack.classList.remove('overlayActive');
   let paper = document.querySelector('.paper');
-  paper.classList.remove('closed')
+
+    container.classList.add('not-visible');
+    overlayBlack.classList.remove('overlayActive');
+  setTimeout(function() {
+    paper.classList.remove('closed');
+  },500)
+
 }
 
 
@@ -283,9 +288,29 @@ function stopAudio() {
 let textopener = document.querySelector('.textopener');
 let paper = document.querySelector('.paper');
 let wrap = document.querySelector('.wrap');
-textopener.addEventListener('click',function() {
+textopener.addEventListener('click',textopenerState);
+wrap.addEventListener('click',textopenerClose);
+
+function textopenerState() {
   paper.classList.toggle('closed');
   //wrap.classList.toggle('slide');
+}
 
-});
+function textopenerClose() {
+  paper.classList.add('closed');
+  //wrap.classList.toggle('slide');
+}
+
+
+function showHighlight(state) {
+  paper.classList.remove('closed');
+    setTimeout(function() {
+      let highlight = document.querySelector('.paper .'+state);
+      console.log(highlight);
+      highlight.classList.add('highlight');
+      highlight.scrollIntoView({behavior: "smooth"});
+    },500);
+
+}
+
 },{}]},{},[1]);

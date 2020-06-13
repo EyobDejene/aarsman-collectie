@@ -11,6 +11,22 @@ body{
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+@font-face {
+    font-family: capito;
+    src: url(../fonts/CapitoliumNewsReg.woff2);
+}
+
+@font-face {
+    font-family: CapitoliumHeadBold;
+    src: url(../fonts/CapitoliumHeadBold.woff2);
+}
+
+@font-face {
+    font-family: CapitoliumHeadReg;
+    src: url(../fonts/CapitoliumHeadReg.woff2);
+}
+
+
 
 video {
     object-fit: cover;
@@ -35,6 +51,7 @@ main {
     flex-flow: column;
     height: 100vh;
     text-align: center;
+    overflow: hidden;
 }
 
 .wrap{
@@ -98,7 +115,7 @@ main {
 }
 
 .scorecontainer span{
-  padding-top: 1rem;
+  padding-top: 3rem;
   color: #ffffff;
 }
 
@@ -292,10 +309,15 @@ sound bar
     align-items: center;
     justify-items: center; /* adjusted */
     position: relative;
-    width: 35rem;
+    width: 40rem;
     margin: auto;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.content p{
+    font-size: 1.4rem;
+    font-weight: 100;
 }
 
 .container {
@@ -375,7 +397,6 @@ svg {
 }
 
 .subtitle{
-    width: 25rem;
     margin: auto;
 }
 
@@ -438,7 +459,7 @@ section:after{
 }
 
 .circle {
-    background: rgba(255,0,0,.8);
+    background: rgba(54, 215, 253, 0.8);
     border: 2px dot-dash;
     border-radius: 50%;
     margin: 10px;
@@ -455,12 +476,12 @@ section:after{
 @keyframes pulse {
     0% {
         transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(255, 0, 1, 1);
+        box-shadow: 0 0 0 0 rgba(54, 215, 253, 1);
     }
 
     70% {
         transform: scale(1);
-        box-shadow: 0 0 0 10px  rgba(255, 0, 1, 0);
+        box-shadow: 0 0 0 10px  rgba(54, 215, 253, 0);
     }
 
     100% {
@@ -674,7 +695,7 @@ section:after{
     left: 50%;
     transform: translate(-50%,-50%);
     position: absolute;
-    z-index: 70;
+    z-index: 100;
     transform-origin: center;
     animation: bounce 0.5s  ease-in-out;
     animation-iteration-count: 1;
@@ -702,8 +723,11 @@ section:after{
     width: 19rem;
     left: 50%;
     transform: translateX(-50%);
-    bottom:-5rem;
+    padding-top: 1rem;
     color: #ffffff;
+    font-size: 1.4rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
 }
 
 .reveal .dashed{
@@ -855,18 +879,25 @@ section:after{
     left: 20%!important;
 }
 .closed{
-    right: -35%!important;
+    right: -34.3%!important;
     opacity: 1;
 }
 
 .textopener{
     height: 50px;
     width: 50px;
-    background-color: white;
+    background-color: rgba(0,0,0,0.8);
     position: absolute;
-    left: -50px;
+    left: -58px;
     border: none;
     top:0%;
+}
+
+.textopener img{
+    width: 70%;
+    height: auto;
+    margin: auto;
+    display: block;
 
 }
 
@@ -875,7 +906,7 @@ section:after{
     position: absolute;
     height: 60%;
     width: 500px;
-    background: rgba(255,255,255,.9);
+    background: rgba(255,255,255,1);
     /*background: #383851;*/
     /*margin: -275px -225px;*/
     right: 0%;
@@ -883,6 +914,8 @@ section:after{
     /*box-shadow: 0px 0px 5px 0px #888;*/
     z-index: 99;
     transition: all 0.5s ease-in-out;
+    border-left: .5rem solid #36D7FD;
+
 }
 /*.paper::before {*/
     /*content: '';*/
@@ -900,27 +933,63 @@ section:after{
 /*}*/
 .paper .text {
     position: absolute;
-    top: 40px;
-    left: 30px;
+    top: 10px;
+    /*left: 30px;*/
     bottom: 10px;
-    right: 20px;
-    line-height: 25px;
-    font-family: 'Indie Flower';
+    /*right: 20px;*/
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 20px;
+    font-family: capito,'Source Sans Pro', sans-serif;
     overflow: scroll;
     outline: none;
     text-align: left;
+    width: 90%;
+    padding: 2rem;
+    margin-top: 0px;
 
+}
+.paper .text b{
+    font-family: CapitoliumHeadBold,'Source Sans Pro', sans-serif;
+}
+
+.paper .text sub{
+    font-family: CapitoliumHeadReg,'Source Sans Pro', sans-serif;
+    font-size: 0.8rem;
 }
 
 .paper .text p{
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .paper .text span{
     font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 600;
-    border-bottom: 1px solid red;
+    /*font-weight: 600;*/
+    /*border-bottom: 1px solid red;*/
+    border-radius: 0;
+    margin: 0;
 }
+
+.highlight{
+    background-color: #36D7FD;
+    border-radius: 0;
+    border-bottom: none!important;
+    animation: blink 0.5s;
+    font-weight: 600;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 4;
+}
+
+
+@keyframes  blink{
+   0%{
+       background-color: transparent;
+   }
+   100%{
+       background-color: #36D7FD;
+    }
+}
+
 /*.holes {*/
     /*position: absolute;*/
     /*left: 10px;*/
