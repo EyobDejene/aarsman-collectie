@@ -31,15 +31,18 @@ function HoverSound() {
 }
 
 function AchievementSound() {
-  createjs.Sound.play(unlock);
+  let achievement = createjs.Sound.play(unlock);
+  achievement.volume = 0.5;
 }
 
 function ScoreSound() {
-  createjs.Sound.play(score);
+  let scoreSound = createjs.Sound.play(score);
+  scoreSound.volume = 0.2;
 }
 
 function  WipeSound() {
-  createjs.Sound.play(wipe);
+  let wipeSound = createjs.Sound.play(wipe);
+  wipeSound.volume = 0.1;
 }
 
 function  VictorySound() {
@@ -49,7 +52,7 @@ function  VictorySound() {
 function backgroundMusic() {
   let background = createjs.Sound.play(spy);
   background.loop = -1;
-  background.volume = 0.5;
+  background.volume = 0.1;
 }
 
 function muteMusic() {
@@ -58,13 +61,17 @@ function muteMusic() {
 
 
 
-function Chest(state) {
-
-    // let beat = createjs.Sound.play(state);
-    // beat.volume = 0.5 ;
-    // beat.loop = -1;
-    //
-    // console.log(beat);
+function handleClick(myRadio) {
+  let hints = myRadio.value;
+  let text = document.querySelectorAll('.paper .text span');
+  if(hints =="true"){
+    for(let i = 0; i< text.length; i++) {
+      text[i].classList.add('hint');
+    }
+  } else{
+    for(let i = 0; i< text.length; i++) {
+      text[i].classList.remove('hint');
+    }
+  }
+  console.log(hints)
 }
-
-

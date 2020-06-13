@@ -154,7 +154,8 @@
     <div class="paper closed">
         <button class="textopener"><img src="assets/images/icon-play.png"></button>
         <div class="lines">
-            <div class="text" contenteditable spellcheck="false">
+
+            <div class="text">
                 <b>SECRETARESSE VAN HET JAAR</b><br>
                 <sub>Anti-Russische militie sloopt een kantoor van de Alfa Bank., Kiev, Oekraïne, 20 februari 2016,
                     foto Efrem Lukatsky / AP</sub> <br /><br />
@@ -200,6 +201,12 @@
                     voorhoofd</span> op. Niet groot genoeg voor een bloedtransfusie A2 Rhesus +.
                 </p>
                 <br>
+                <input id="toggle-on" class="toggle toggle-left" name="toggle" value="true" type="radio"
+                       onchange="handleClick(this)">
+                <label for="toggle-on" class="hints">Hints aan</label>
+                <input id="toggle-off" class="toggle toggle-right" name="toggle" value="false" type="radio"
+                       onchange="handleClick(this)"checked>
+                <label for="toggle-off" class="hints">Hints uit</label>
             </div>
         </div>
     </div>
