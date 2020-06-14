@@ -9,25 +9,58 @@
     <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body onload="loadSound()" onclick="ClickSound()" data-barba="wrapper">
-<main>
-
+<main class="experiment">
+    <div class="loader">
+        <div class="loader-4 center"><span></span></div>
+    </div>
     <div class="wrap">
         <div class="wrapper">
             <header>
                 <div class="logo aarsman-logo">
                     <img src="assets/images/aarsmanBox_logo.svg" alt="aarsman logo">
                 </div>
-                <div class="score-wrap">
-                    <div class="score"><span class="found">2</span>/<span class="need">10</span></div>
-                </div>
+
                 <div class="fill-remaining-space"></div>
-                <div class="logo volkskrant">
-                    <img src="assets/images/Volkskrant.svg" alt="volkskrant logo">
+                <div class="scorecontainer">
+                    <!--<span>Gevonden aanwijzingen:</span>-->
+                <div class="score-wrap">
+                    <div class="score"><span class="found"></span>/
+                    <span class="need"></span></div>
+                </div>
+                    <span class="time">
+                        <div class="counter">
+                            <label id="minutes">00</label>
+                            :
+                            <label id="seconds">00</label>
+                        </div>
+                    </span>
                 </div>
             </header>
 
             <div class="page" data-barba="container" data-barba-namespace="page-a">
-
+                <div class="container">
+                    <div class="content">
+                    <span class="element">
+                        <h1>SECRETARESSE VAN HET JAAR</h1>
+                        <p class="subtitle">
+                            Lees het artikel wat ik heb geschreven en analyseer de persfoto.<br>
+                            Lukt het jou om alle aanwijzingen te vinden?<br>
+                            Gebruik je muis en inspecteer alles tot in detail. <br>
+                            <!--Zie jij wat ik zie?-->
+                        </p>
+                        <div class="scorewrap"></div>
+                        <div class="buttonWrapper">
+                        <a href="#" class="btn start" onmouseenter="HoverSound();">
+                            <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                                <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                                <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                            </svg>
+                            <span>Start</span>
+                        </a>
+                        </div>
+                    </span>
+                    </div>
+                </div>
                 <div class="controls">
                     <button class="zoomIn">+</button>
                     <div class="slider"><div class="wheel"></div> </div>
@@ -37,43 +70,59 @@
 
                 <div class="reveal not-visible">
                     <div class="img"><img src="assets/images/Collectie160303.jpg"></div>
-                    <div class="dashed"></div><span class="text"><p></p></span></div>
+                    <div class="dashed"></div>
+                    <span class="text"><p></p></span>
+                </div>
 
-                <!--<button onclick="playSound();" class="playSound">Play Sound</button>-->
-                <!--<div class="container">-->
-                    <!--<div class="content">-->
-                    <!--<span class="element">-->
-
-                    <!--</span>-->
-                        <!--<div class="buttonWrapper">-->
-                            <!--<a href="experimental.html" class="btn" onmouseenter="HoverSound();">-->
-                                <!--<svg width="180px" height="60px" viewBox="0 0 180 60" class="border">-->
-                                    <!--<polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />-->
-                                    <!--<polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />-->
-                                <!--</svg>-->
-                                <!--<span>Start Experiment</span>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
                 <section>
                    <div class="object-subject">
                        <div class="cameras area area1"></div>
-                       <div class="circle cameras camera1 not-visible"></div>
+                       <div class="cameras circle camera1 not-visible clue"></div>
                        <div class="cameras area area2"></div>
-                       <div class="circle cameras camera2 not-visible"></div>
+                       <div class="cameras circle camera2 not-visible"></div>
                        <div class="cameras area area3"></div>
-                       <div class="circle cameras camera3 not-visible"></div>
+                       <div class="cameras circle camera3 not-visible"></div>
 
-
+                        <!-- beker -->
                        <div class="bokaal area area4"></div>
-                       <div class="circle area bokaal not-visible"></div>
+                       <div class="bokaal circle area not-visible clue"></div>
+
+                       <!-- brand kast -->
+                       <div class="brandkast area area5"></div>
+                       <div class="brandkast circle area not-visible clue"></div>
+
+                       <!-- bloed hoofd -->
+                       <div class="bloed area area6"></div>
+                       <div class="bloed circle area not-visible clue"></div>
+
+                       <!-- vlag kamer -->
+                       <div class="vlag area area7"></div>
+                       <div class="vlag circle area not-visible clue"></div>
+
+                       <!-- lampjes kamer -->
+                       <div class="lampjes area area8"></div>
+                       <div class="lampjes circle area not-visible clue"></div>
+
+                       <!-- borst label -->
+                       <div class="borst area area9"></div>
+                       <div class="borst circle area not-visible clue"></div>
+
+                       <!-- militair persoon -->
+                       <div class="militair area area10"></div>
+                       <div class="militair circle area not-visible clue"></div>
+
+                       <!-- glazen deur -->
+                       <div class="glas area area11"></div>
+                       <div class="glas circle area not-visible clue"></div>
+
+
+
 
                        <img src="assets/images/Collectie160303.jpg">
 
                    </div>
                     <canvas id="noise" class="noise"></canvas>
-                    <div class="overlayBlack"></div>
+                    <div class="overlayBlack overlayActive"></div>
                 </section>
 
             </div>
@@ -81,18 +130,83 @@
         </div>
 
         <div class="footer">
-            <div id="bars"></div>
+            <div class="bars-wrap">
+                <div id="bars"></div>
+            </div>
             <div class="fill-remaining-space"></div>
 
             <div class="founds-wrap">
-                <div class="circle-found"></div><button class="founds">Gevonden aanwijzingen</button>
+                <!--<div class="circle-found"></div><button class="founds">Gevonden aanwijzingen</button>-->
+                <div class="logo volkskrant">
+                    <img src="assets/images/Volkskrant.svg" alt="volkskrant logo">
+                </div>
             </div>
 
         </div>
     </div>
-
     <div class="cursor-dot-outline"></div>
     <div class="cursor-dot"></div>
+
+
+    <div class="paper closed">
+        <button class="textopener"><img src="assets/images/icon-play.png"></button>
+        <div class="lines">
+
+            <div class="text">
+                <b>SECRETARESSE VAN HET JAAR</b><br>
+                <sub>Anti-Russische militie sloopt een kantoor van de Alfa Bank., Kiev, Oekraïne, 20 februari 2016,
+                    foto Efrem Lukatsky / AP</sub> <br /><br />
+                <p>
+                    Die halve bolletjes van glas tegen het plafond boven de stralende stellen in zwart-wit, zijn dat
+                    <span class="cameras">bewakingscamera’s</span>? Lekker werken zo. Maar de klanten kunnen hun geluk niet op, ze
+                    vallen
+                    elkaar
+                    in de armen, op het strand, in het bos. Het kan niet anders of hun vreugde betreft de persoonlijke lening die ze net hebben afgesloten. Meer kun je als particulier niet doen bij Alfa, niet eens een hypotheek.
+                </p>
+                <br>
+                <p>
+                    Voor zakelijke klanten zijn er mogelijkheden om actief te worden op de Russische markt. Dat weet
+                    ik omdat de Alfa Bank ook een filiaal in Nederland heeft. Op de Nederlandse site wordt de
+                    Russische achtergrond niet onder stoelen of banken gestoken. Maar in Kiev houden ze dat wijselijk
+                    stil. In de witte muur rechts zit een metalen deur waarachter ooit de <span class="brandkast">brandblusser</span>
+                    huisde. Nu
+                    is er een plaat op gemonteerd met een nummer dat je moet bellen bij brand. Alles in het Oekraïens. Ook op hun site niets over Russische connecties, je moet echt op onderzoek gaan voor er iets verschijnt over zaken doen met de Russen.
+                </p>
+                <br>
+                <p>
+                    Zover is deze militant niet geweest. Hij heeft het van horen zeggen, in cyberspace
+                    weet hij
+                    de weg niet. Alleen al dat je de moeite neemt om de inrichting van een bankfiliaal aan diggelen te slaan. Banken zijn geen printers, beste man, geen beeldschermen. Banken zijn virtueel, geld trouwens ook.
+                </p>
+                <br>
+                <p>
+                    Maar je hebt niet voor niets een <span class="militair">uniform</span> gekocht met camouflagepatroon van het Oekraïense leger.
+                    Een complete set kwam ik tegen op eBay, voor 79 dollar. Als je die eenmaal thuis hebt, kun je
+                    niet wachten tot je in vol ornaat mag laten zien dat je je mannetje staat. Wel een slechte beurt
+                    om je moeder boven de linker borstzak een label met je <span class="borst">bloedgroep</span> te laten naaien.
+                    Heb ik
+                    nog nooit gezien. Het had anders niet veel gescheeld of het label was van pas gekomen.
+                </p>
+                <br>
+                <p>
+                    Hij komt net uit de directiekamer. Aan het plafond brandt een <span class="lampjes">bordje met rode
+                    redlampjes</span>: de directie wil niet gestoord worden. Niets van aangetrokken. Binnen treft hij
+                    diverse oorkonden en trofeeën aan. Het <span class="vlag">rode vlaggetje</span> in de vitrinelijst laat
+                    hij heel, hij werpt zich op <span class="bokaal">de beker</span> voor de secretaresse van het jaar.
+                    Als hij met de beker de <span class="glas">glazen deur</span> aan diggelen slaat, loopt hij een <span
+                        class="bloed">schrammetje op zijn
+                    voorhoofd</span> op. Niet groot genoeg voor een bloedtransfusie A2 Rhesus +.
+                </p>
+                <br>
+                <input id="toggle-on" class="toggle toggle-left" name="toggle" value="true" type="radio"
+                       onchange="handleClick(this)">
+                <label for="toggle-on" class="hints">Hints aan</label>
+                <input id="toggle-off" class="toggle toggle-right" name="toggle" value="false" type="radio"
+                       onchange="handleClick(this)"checked>
+                <label for="toggle-off" class="hints">Hints uit</label>
+            </div>
+        </div>
+    </div>
 </main>
 <script src='https://unpkg.com/panzoom@9.2.4/dist/panzoom.min.js'></script>
 <!-- unpkg -->

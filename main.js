@@ -16,13 +16,13 @@
 // });
 
 //initialize options here
-var mprox = new mouseProximity(document.getElementsByClassName('cameras'),
-    {
-  clear: false,
-  origin: 'center',
-  showAttribute: false,
-   //callback can be set here too
-});
+// var mprox = new mouseProximity(document.getElementsByClassName('cameras'),
+//     {
+//   clear: false,
+//   origin: 'center',
+//   showAttribute: false,
+//    //callback can be set here too
+// });
 
 
 let playing_slow = false;
@@ -71,7 +71,7 @@ var doSomething = function(el,distance){
 }
 
 //run the proximity tracker
-mprox.run(doSomething);
+// mprox.run(doSomething);
 
 // //stop the proximity tracker
 // mprox.stop();
@@ -81,106 +81,318 @@ mprox.run(doSomething);
 
 
 // just grab a DOM element
-var element = document.querySelector('.object-subject');
+let element = document.querySelector('.object-subject');
 
+if(element) {
 // And pass it to panzoom
-panzoom(element, {
-  zoomSpeed: 0.065, // 6.5% per mouse wheel event
-  maxZoom: 2,
-  minZoom: 1,
-  bounds: true,
-  boundsPadding: 1
-}).smoothZoomAbs(
-    300, // initial x position
-    500, // initial y position
-    0.1  // initial zoom
-);
+  panzoom(element, {
+    zoomSpeed: 0.065, // 6.5% per mouse wheel event
+    maxZoom: 2,
+    minZoom: 1,
+    bounds: true,
+    boundsPadding: 1
+  }).smoothZoomAbs(
+      300, // initial x position
+      500, // initial y position
+      0.1  // initial zoom
+  );
+}
 
 
 
-
-let cameras = document.querySelectorAll('.cameras');
-let bokaal = document.querySelectorAll('.bokaal');
-
-
-for(var i = 0; i<bokaal.length; i++) {
-  bokaal[i].addEventListener("click",function() {
-    if (bokaal)
-    {
-      for (var i = 0; i < bokaal.length; i++) {
-        bokaal[i].classList.remove('not-visible');
-      }
-      reveal();
-  }
+let area = document.querySelectorAll('.area');
+for(var i = 0; i<area.length; i++) {
+  console.log(area[i]);
+  area[i].addEventListener("click",function(e) {
+    let areaReveal = this.classList[0];
+    reveal(areaReveal);
   });
 }
 
 
 
-for(var i = 0; i<cameras.length; i++) {
-  cameras[i].addEventListener("click",showCircle);
-}
-function showCircle(e){
-  let cameras = this.classList.contains('cameras');
-  if(cameras)
-  {
-    let camera = document.querySelectorAll('.cameras');
-
-    for(var i = 0; i<camera.length; i++) {
-      camera[i].classList.remove('not-visible');
-      console.log(camera[i])
-    }
-    reveal('camera');
-  }
-
-  //e.classList.toggle('not-visible');
-}
-
-
-
 function reveal(state){
+  console.log(state);
   let reveal = document.querySelector('.reveal');
   let overlay = document.querySelector('.overlayBlack');
   let reveal_text = document.querySelector('.text p');
-  if(state === 'camera'){
-    reveal_text.innerHTML = '' +
-        'Die halve bolletjes van glas tegen het plafond' +
-        ' boven de stralende stellen in zwart-wit, zijn dat bewakingscamera’s?' +
-        ' Lekker werken zo.';
-  }else{
-    reveal_text.innerHTML = "Binnen treft hij diverse oorkonden en trofeeën aan. ";
-  }
-  overlay.classList.add('overlayActive');
-  console.log(reveal);
-  AchievementSound();
-  reveal.classList.remove('not-visible');
-  setTimeout(function() {
+  let reveal_image = document.querySelector('.img img');
 
-  },5000);
+  if(state === 'cameras'){
+    reveal_text.innerHTML = 'Bewakingscamera’s';
+    reveal_image.src= 'assets/images/camera.jpg';
+  }
+
+  if(state === 'bokaal'){
+    reveal_text.innerHTML = "De beker";
+    reveal_image.src= 'assets/images/bokaal.jpg';
+  }
+
+  if(state === 'brandkast'){
+    reveal_text.innerHTML = "Brandblusser";
+    reveal_image.src= 'assets/images/brandkast.jpg';
+  }
+
+  if(state === 'bloed'){
+    reveal_text.innerHTML = "Schrammetje op zijn voorhoofd";
+    reveal_image.src= 'assets/images/bloed.jpg';
+  }
+
+  if(state === 'vlag'){
+    reveal_text.innerHTML = "Rode vlaggetje";
+    reveal_image.src= 'assets/images/vlag.jpg';
+  }
+
+  if(state === 'lampjes'){
+    reveal_text.innerHTML = "Rode redlampjes";
+    reveal_image.src= 'assets/images/lampjes.jpg';
+  }
+
+  if(state === 'borst'){
+    reveal_text.innerHTML = "Bloedgroep";
+    reveal_image.src= 'assets/images/borst.jpg';
+  }
+
+  if(state === 'militair'){
+    reveal_text.innerHTML = "Uniform";
+    reveal_image.src= 'assets/images/militair.jpg';
+  }
+
+  if(state === 'glas'){
+    reveal_text.innerHTML = "Glazen deur";
+    reveal_image.src= 'assets/images/glas.jpg';
+  }
+
+  showCircle(state);
+  overlay.classList.add('overlayActive');
+  reveal.classList.remove('not-visible');
+  AchievementSound();
+  setTimeout(function() {
+    reveal.classList.add('fly');
+  },2000);
+  setTimeout(function() {
+    closeReveal();
+    showHighlight(state);
+  },3000)
+  // setTimeout(function() {
+  //   closeReveal();
+  // },5000);
 }
 
 
+function showCircle(state){
+    let SelectedAreas = document.querySelectorAll('.object-subject .'+state);
+    for(var i = 0; i< SelectedAreas.length; i++) {
+      SelectedAreas[i].classList.remove('not-visible');
+      SelectedAreas[i].classList.add('disabled');
+      // console.log(SelectedAreas[i])
+      clueFound(SelectedAreas[i]);
+    }
 
-document.querySelector('.reveal').addEventListener('click',closeReveal);
+}
+
 
 function closeReveal(){
   if (document.querySelector('.overlayBlack').classList.contains('overlayActive')){
     // do some stuff
     let reveal = document.querySelector('.reveal');
     let overlay = document.querySelector('.overlayBlack');
-
-    reveal.classList.add('not-visible');
-    overlay.classList.remove('overlayActive');
+      reveal.classList.add('not-visible');
+      overlay.classList.remove('overlayActive');
+      reveal.classList.remove('fly');
   }
 }
 
 
+
+// play when page is loaded
 window.addEventListener("load", callback);
 function callback(){
   setTimeout(function() {
+    let loader = document.querySelector('.loader');
     console.log('loaded');
+    let experiment = document.querySelector('.experiment');
+    if(experiment) {
+      backgroundMusic();
+    }else{
+      let video = document.querySelector('video');
+      video.play();
+    }
+    loader.classList.add('removeloading');
+  },1500);
+}
+
+
+
+checkClues();
+function checkClues() {
+  let clues = document.querySelectorAll('.clue');
+  let countClues = clues.length;
+  let need = document.querySelector('.need');
+  let found = document.querySelector('.found');
+  need.innerHTML = countClues;
+  found.innerHTML = 0;
+
+}
+
+function clueFound(clue) {
+  let found = clue.classList.contains('clue');
+  if(found){
+    setTimeout(function() {
+      setScore();
+    },2500);
+
+  }
+}
+
+function setScore(){
+  let found = document.querySelector('.found');
+  let clues = document.querySelectorAll('.clue');
+  let countClues = clues.length;
+  let value  = Number(found.innerHTML);
+  let valueCheck = value+1;
+    value++;
+    found.innerHTML = value;
+  if(valueCheck < countClues) {
+      ScoreSound();
+  }else {
+    ScoreSound();
+    WipeSound();
+    VictorySound();
+    RunTimer(false);
+    console.log('found all');
+    showScore();
+
+  }
+
+
+}
+
+function showScore(){
+  // Get data
+  setTimeout(function() {
+    textopenerClose();
+  },3000);
+  setTimeout(function() {
+    let score = localStorage.getItem('time');
+    document.querySelector('.overlayBlack').classList.add('overlayActive');
+    document.querySelector('.page .container h1').innerHTML = 'Je hebt alle aanwijzingen gevonden!';
+    document.querySelector('.page .container .subtitle').innerHTML = 'Jouw tijd:';
+    document.querySelector('.page .container .scorewrap').innerHTML = '<span class="timeScore"><h2>'+score+'</h2></span>';
+    document.querySelector('.page .container .buttonWrapper a').href="experimental.html";
+    document.querySelector('.page .container .buttonWrapper span').innerHTML = 'Opnieuw';
+
+    document.querySelector('.container').classList.remove('not-visible');
+  },4500)
+
+}
+
+// start game
+let startButton = document.querySelector('.start');
+startButton.addEventListener('click',startGame);
+function  startGame() {
+  let overlayBlack = document.querySelector('.overlayBlack');
+  let container = document.querySelector('.container');
+  let paper = document.querySelector('.paper');
+
+    container.classList.add('not-visible');
+    overlayBlack.classList.remove('overlayActive');
+  setTimeout(function() {
+    paper.classList.remove('closed');
+    RunTimer(true);
+  },500)
+
+}
+
+
+
+// controlls audio
+let audio = document.querySelector('.bars-wrap');
+audio.addEventListener('click',stopAudio);
+function stopAudio() {
+  let state = audio.classList;
+  let soundwave = document.querySelector('#bars');
+  if(state.contains('muted')){
     backgroundMusic();
-  },1000);
+    state.remove('muted');
+    soundwave.classList.remove('pause');
+  }else{
+    muteMusic();
+    state.add('muted');
+    soundwave.classList.add('pause');
+  }
+}
+
+
+let textopener = document.querySelector('.textopener');
+let paper = document.querySelector('.paper');
+let wrap = document.querySelector('.wrap');
+textopener.addEventListener('click',textopenerState);
+wrap.addEventListener('click',textopenerClose);
+
+function textopenerState() {
+  paper.classList.toggle('closed');
+  //wrap.classList.toggle('slide');
+}
+
+function textopenerClose() {
+  paper.classList.add('closed');
+  //wrap.classList.toggle('slide');
+}
+
+
+function showHighlight(state) {
+  paper.classList.remove('closed');
+    setTimeout(function() {
+      let highlight = document.querySelector('.paper .'+state);
+      console.log(highlight);
+      highlight.classList.add('highlight');
+      highlight.scrollIntoView({behavior: "smooth"});
+    },500);
+
+}
+
+
+function RunTimer(state) {
+  let minutesLabel = document.getElementById("minutes");
+  let secondsLabel = document.getElementById("seconds");
+  let totalSeconds = 0;
+  console.log(state);
+  let clock;
+  if(state) {
+      clock = setInterval(function() {
+      ++totalSeconds;
+      secondsLabel.innerHTML = pad(totalSeconds % 60);
+      minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+      function pad(val) {
+        let valString = val + "";
+        if (valString.length < 2) {
+          return "0" + valString;
+        } else {
+          return valString;
+        }
+      }
+    }, 1000);
+    let timerID = clock;
+    localStorage.setItem('timerID', timerID);
+  }
+
+  if(state){
+    console.log('timer aan');
+    clock;
+  }else{
+    // Get data
+    let timerID = localStorage.getItem('timerID');
+    console.log('timer uit');
+    clearInterval(timerID);
+    let minutes = document.querySelector('#minutes').innerHTML;
+    let seconds = document.querySelector('#seconds').innerHTML;
+    let time = minutes+':'+seconds;
+    localStorage.setItem('time', time);
+  }
+  console.log(clock);
+
+
 
 }
 
