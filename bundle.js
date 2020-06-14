@@ -210,8 +210,8 @@ function closeReveal(){
 window.addEventListener("load", callback);
 function callback(){
   setTimeout(function() {
+    let loader = document.querySelector('.loader');
     console.log('loaded');
-
     let experiment = document.querySelector('.experiment');
     if(experiment) {
       backgroundMusic();
@@ -219,7 +219,8 @@ function callback(){
       let video = document.querySelector('video');
       video.play();
     }
-  },1000);
+    loader.classList.add('removeloading');
+  },1500);
 }
 
 

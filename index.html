@@ -11,7 +11,9 @@
 <body onload="loadSound()" onclick="ClickSound()"; data-barba="wrapper">
 <main>
     <canvas id="noise" class="noise"></canvas>
-    <div class="loader overlayBlack overlayActive"></div>
+    <div class="loader overlayBlack overlayActive">
+        <div class="loader-4 center"><span></span></div>
+    </div>
     <div class="wrap">
         <div class="wrapper">
         <header>
@@ -41,7 +43,7 @@
                 </div>
             </div>
             <section>
-                <video onload="videoLoaded()" playsinline loop  id="bgvid">
+                <video onload="videoLoaded()" playsinline loop muted id="bgvid">
                     <source src="assets/clips/Aarsman_hd_compressed.mp4" type="video/mp4">
                 </video>
             </section>
