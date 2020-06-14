@@ -81,21 +81,22 @@ var doSomething = function(el,distance){
 
 
 // just grab a DOM element
-var element = document.querySelector('.object-subject');
+let element = document.querySelector('.object-subject');
 
+if(element) {
 // And pass it to panzoom
-panzoom(element, {
-  zoomSpeed: 0.065, // 6.5% per mouse wheel event
-  maxZoom: 2,
-  minZoom: 1,
-  bounds: true,
-  boundsPadding: 1
-}).smoothZoomAbs(
-    300, // initial x position
-    500, // initial y position
-    0.1  // initial zoom
-);
-
+  panzoom(element, {
+    zoomSpeed: 0.065, // 6.5% per mouse wheel event
+    maxZoom: 2,
+    minZoom: 1,
+    bounds: true,
+    boundsPadding: 1
+  }).smoothZoomAbs(
+      300, // initial x position
+      500, // initial y position
+      0.1  // initial zoom
+  );
+}
 
 
 
@@ -209,10 +210,17 @@ window.addEventListener("load", callback);
 function callback(){
   setTimeout(function() {
     console.log('loaded');
-    backgroundMusic();
-  },1000);
 
+    let experiment = document.querySelector('.experiment');
+    if(experiment) {
+      backgroundMusic();
+    }else{
+      let video = document.querySelector('video');
+      video.play();
+    }
+  },1000);
 }
+
 
 
 checkClues();

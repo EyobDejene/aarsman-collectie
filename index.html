@@ -11,6 +11,7 @@
 <body onload="loadSound()" onclick="ClickSound()"; data-barba="wrapper">
 <main>
     <canvas id="noise" class="noise"></canvas>
+    <div class="loader overlayBlack overlayActive"></div>
     <div class="wrap">
         <div class="wrapper">
         <header>
@@ -26,7 +27,7 @@
                 <div class="content">
                     <span class="element">
                         <h1>Analyseer persfoto's als een detective & verkrijg nieuwe inzichten</h1>
-                        <p class="subtitle">subtekst hier</p>
+                        <p class="subtitle">Welk verhaal schuilt er achter de foto?</p>
                     </span>
                     <div class="buttonWrapper">
                         <a href="experimental.html" class="btn" onmouseenter="HoverSound();">
@@ -40,7 +41,7 @@
                 </div>
             </div>
             <section>
-                <video playsinline autoplay muted loop poster="polina.jpg" id="bgvid">
+                <video onload="videoLoaded()" playsinline loop  id="bgvid">
                     <source src="assets/clips/Aarsman_hd_compressed.mp4" type="video/mp4">
                 </video>
             </section>

@@ -101,6 +101,11 @@ main {
     transition: all 0.5s ease-in-out;
 }
 
+main .loader{
+    opacity: 0;
+
+}
+
 .scoreScreen{
     z-index: 9;
     position: absolute;
@@ -211,7 +216,8 @@ header{
     pointer-events: none;
 }
 
-header h1{
+h1{
+    font-family: CapitoliumHeadBold,'Source Sans Pro', sans-serif;
 }
 
 .fill-remaining-space {
@@ -438,7 +444,7 @@ svg {
     font-size: 1.5rem;
     font-weight: 400;
     text-transform: uppercase;
-    font-family: 'Amatic SC', cursive;
+    font-family: 'Amatic SC', Avenir,cursive;
     display:table-cell;
     vertical-align:middle;
 }
@@ -728,8 +734,8 @@ section:after{
     margin: 10px;
     height: 30px;
     width: 30px;
-    left: 44.4%;
-    top: 88%;
+    left: 53.4%;
+    top: 76%;
 }
 
 
