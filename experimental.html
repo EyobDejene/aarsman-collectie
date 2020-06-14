@@ -20,11 +20,18 @@
 
                 <div class="fill-remaining-space"></div>
                 <div class="scorecontainer">
-                    <span>Gevonden aanwijzingen:</span>
+                    <!--<span>Gevonden aanwijzingen:</span>-->
                 <div class="score-wrap">
                     <div class="score"><span class="found"></span>/
                     <span class="need"></span></div>
                 </div>
+                    <span class="time">
+                        <div class="counter">
+                            <label id="minutes">00</label>
+                            :
+                            <label id="seconds">00</label>
+                        </div>
+                    </span>
                 </div>
             </header>
 
@@ -36,9 +43,10 @@
                         <p class="subtitle">
                             Lees het artikel wat ik heb geschreven en analyseer de persfoto.<br>
                             Lukt het jou om alle aanwijzingen te vinden?<br>
-                            De taak aan jouw om alles tot in detail te inspecteren.<br>
-                            Zie jij wat ik zie?
+                            Gebruik je muis en inspecteer alles tot in detail. <br>
+                            <!--Zie jij wat ik zie?-->
                         </p>
+                        <div class="scorewrap"></div>
                         <div class="buttonWrapper">
                         <a href="#" class="btn start" onmouseenter="HoverSound();">
                             <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
@@ -118,6 +126,10 @@
                        <div class="militair area area10"></div>
                        <div class="militair circle area not-visible clue"></div>
 
+                       <!-- glazen deur -->
+                       <div class="glas area area11"></div>
+                       <div class="glas circle area not-visible clue"></div>
+
 
 
 
@@ -177,13 +189,13 @@
                 </p>
                 <br>
                 <p>
-                    Zover is deze <span class="militair">militant</span> niet geweest. Hij heeft het van horen zeggen, in cyberspace
+                    Zover is deze militant niet geweest. Hij heeft het van horen zeggen, in cyberspace
                     weet hij
                     de weg niet. Alleen al dat je de moeite neemt om de inrichting van een bankfiliaal aan diggelen te slaan. Banken zijn geen printers, beste man, geen beeldschermen. Banken zijn virtueel, geld trouwens ook.
                 </p>
                 <br>
                 <p>
-                    Maar je hebt niet voor niets een uniform gekocht met camouflagepatroon van het Oekraïense leger.
+                    Maar je hebt niet voor niets een <span class="militair">uniform</span> gekocht met camouflagepatroon van het Oekraïense leger.
                     Een complete set kwam ik tegen op eBay, voor 79 dollar. Als je die eenmaal thuis hebt, kun je
                     niet wachten tot je in vol ornaat mag laten zien dat je je mannetje staat. Wel een slechte beurt
                     om je moeder boven de linker borstzak een label met je <span class="borst">bloedgroep</span> te laten naaien.
@@ -196,7 +208,7 @@
                     redlampjes</span>: de directie wil niet gestoord worden. Niets van aangetrokken. Binnen treft hij
                     diverse oorkonden en trofeeën aan. Het <span class="vlag">rode vlaggetje</span> in de vitrinelijst laat
                     hij heel, hij werpt zich op <span class="bokaal">de beker</span> voor de secretaresse van het jaar.
-                    Als hij met de beker de glazen deur aan diggelen slaat, loopt hij een <span
+                    Als hij met de beker de <span class="glas">glazen deur</span> aan diggelen slaat, loopt hij een <span
                         class="bloed">schrammetje op zijn
                     voorhoofd</span> op. Niet groot genoeg voor een bloedtransfusie A2 Rhesus +.
                 </p>
@@ -210,7 +222,6 @@
             </div>
         </div>
     </div>
-
 </main>
 <script src='https://unpkg.com/panzoom@9.2.4/dist/panzoom.min.js'></script>
 <!-- unpkg -->

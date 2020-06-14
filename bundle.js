@@ -139,7 +139,7 @@ function reveal(state){
   }
 
   if(state === 'vlag'){
-    reveal_text.innerHTML = "Bordje met rode vlaggetje";
+    reveal_text.innerHTML = "Rode vlaggetje";
     reveal_image.src= 'assets/images/vlag.jpg';
   }
 
@@ -154,8 +154,13 @@ function reveal(state){
   }
 
   if(state === 'militair'){
-    reveal_text.innerHTML = "Militant";
+    reveal_text.innerHTML = "Uniform";
     reveal_image.src= 'assets/images/militair.jpg';
+  }
+
+  if(state === 'glas'){
+    reveal_text.innerHTML = "Glazen deur";
+    reveal_image.src= 'assets/images/glas.jpg';
   }
 
   showCircle(state);
@@ -225,7 +230,10 @@ function checkClues() {
 function clueFound(clue) {
   let found = clue.classList.contains('clue');
   if(found){
-    setScore();
+    setTimeout(function() {
+      setScore();
+    },2500);
+
   }
 }
 
@@ -243,9 +251,31 @@ function setScore(){
     ScoreSound();
     WipeSound();
     VictorySound();
+    RunTimer(false);
     console.log('found all');
+    showScore();
+
   }
 
+
+}
+
+function showScore(){
+  // Get data
+  setTimeout(function() {
+    textopenerClose();
+  },3000);
+  setTimeout(function() {
+    let score = localStorage.getItem('time');
+    document.querySelector('.overlayBlack').classList.add('overlayActive');
+    document.querySelector('.page .container h1').innerHTML = 'Je hebt alle aanwijzingen gevonden!';
+    document.querySelector('.page .container .subtitle').innerHTML = 'Jouw tijd:';
+    document.querySelector('.page .container .scorewrap').innerHTML = '<span class="timeScore"><h2>'+score+'</h2></span>';
+    document.querySelector('.page .container .buttonWrapper a').href="experimental.html";
+    document.querySelector('.page .container .buttonWrapper span').innerHTML = 'Opnieuw';
+
+    document.querySelector('.container').classList.remove('not-visible');
+  },4500)
 
 }
 
@@ -261,6 +291,7 @@ function  startGame() {
     overlayBlack.classList.remove('overlayActive');
   setTimeout(function() {
     paper.classList.remove('closed');
+    RunTimer(true);
   },500)
 
 }
@@ -313,6 +344,49 @@ function showHighlight(state) {
 
 }
 
+
+function RunTimer(state) {
+  let minutesLabel = document.getElementById("minutes");
+  let secondsLabel = document.getElementById("seconds");
+  let totalSeconds = 0;
+  console.log(state);
+  let clock;
+  if(state) {
+      clock = setInterval(function() {
+      ++totalSeconds;
+      secondsLabel.innerHTML = pad(totalSeconds % 60);
+      minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+      function pad(val) {
+        let valString = val + "";
+        if (valString.length < 2) {
+          return "0" + valString;
+        } else {
+          return valString;
+        }
+      }
+    }, 1000);
+    let timerID = clock;
+    localStorage.setItem('timerID', timerID);
+  }
+
+  if(state){
+    console.log('timer aan');
+    clock;
+  }else{
+    // Get data
+    let timerID = localStorage.getItem('timerID');
+    console.log('timer uit');
+    clearInterval(timerID);
+    let minutes = document.querySelector('#minutes').innerHTML;
+    let seconds = document.querySelector('#seconds').innerHTML;
+    let time = minutes+':'+seconds;
+    localStorage.setItem('time', time);
+  }
+  console.log(clock);
+
+
+
+}
 
 
 },{}]},{},[1]);

@@ -15,8 +15,8 @@ function loadSound () {
   createjs.Sound.registerSound("assets/audio/chest_steady.mp3", steady);
   createjs.Sound.registerSound("assets/audio/chest_fast.mp3", fast);
   createjs.Sound.registerSound("assets/audio/reveal.mp3", unlock);
-  createjs.Sound.registerSound("assets/audio/search.mp3", spy);
-  createjs.Sound.registerSound("assets/audio/score.mp3", score);
+  createjs.Sound.registerSound("assets/audio/undercover.mp3", spy);
+  createjs.Sound.registerSound("assets/audio/score2.mp3", score);
   createjs.Sound.registerSound("assets/audio/wipe.mp3", wipe);
   createjs.Sound.registerSound("assets/audio/victory.mp3", victory);
 }
