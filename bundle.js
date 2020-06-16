@@ -363,9 +363,9 @@ function stopAudio() {
 
 
 let textopener = document.querySelector('.textopener');
+let paper = document.querySelector('.paper');
+let wrap = document.querySelector('.wrap');
 if(textopener) {
-  let paper = document.querySelector('.paper');
-  let wrap = document.querySelector('.wrap');
   textopener.addEventListener('click', textopenerState);
   wrap.addEventListener('click', textopenerClose);
 }
