@@ -218,6 +218,7 @@ function callback(){
     }else{
       let video = document.querySelector('video');
       video.play();
+      backgroundMusicOne();
     }
     loader.classList.add('removeloading');
   },1500);
@@ -231,9 +232,10 @@ function checkClues() {
   let countClues = clues.length;
   let need = document.querySelector('.need');
   let found = document.querySelector('.found');
-  need.innerHTML = countClues;
-  found.innerHTML = 0;
-
+  if(need) {
+    need.innerHTML = countClues;
+    found.innerHTML = 0;
+  }
 }
 
 function clueFound(clue) {
@@ -278,11 +280,20 @@ function showScore(){
     let score = localStorage.getItem('time');
     document.querySelector('.overlayBlack').classList.add('overlayActive');
     document.querySelector('.page .container h1').innerHTML = 'Je hebt alle aanwijzingen gevonden!';
-    document.querySelector('.page .container .subtitle').innerHTML = 'Jouw tijd:';
-    document.querySelector('.page .container .scorewrap').innerHTML = '<span class="timeScore"><h2>'+score+'</h2></span>';
-    document.querySelector('.page .container .buttonWrapper a').href="experimental.html";
-    document.querySelector('.page .container .buttonWrapper span').innerHTML = 'Opnieuw';
 
+        let text = '' +
+        'Hoe snel je alle aanwijzingen hebt gevonden maakt in principe niks' +
+            ' uit, het gaat erom hoe gedetailleerd je de foto hebt' +
+            ' geanalyseerd.\n' +
+        'Neem wanneer je een foto gaat analyseren de tijd om alles tot je ' +
+        'op te nemen en probeer verbanden te leggen.\n' +
+        '\n\n Jouw tijd:';
+    text = text.split("\n").join("<br />");
+    document.querySelector('.page .container .subtitle').innerHTML = text;
+    document.querySelector('.page .container .scorewrap').innerHTML = '<span class="timeScore"><h2>'+score+'</h2></span>';
+    document.querySelector('.page .container .buttonWrapper a').target= "_blank";
+    document.querySelector('.page .container .buttonWrapper a').href="http://twitter.com/share?text=Kijk door de bril van Hans Aarsman en ontdek wat hij ziet. Ga aan de slag met het analyseren van persfoto's en ontdek nieuwe inzichten. Ik heb alle aanwijzingen gevonden binnen een tijd van "+score+". Wil jij ook te werk gaan als een fotodetective?  Het kan nu!";
+    document.querySelector('.page .container .buttonWrapper span').innerHTML = 'Delen';
     document.querySelector('.container').classList.remove('not-visible');
   },4500)
 
@@ -290,18 +301,37 @@ function showScore(){
 
 // start game
 let startButton = document.querySelector('.start');
-startButton.addEventListener('click',startGame);
+if(startButton){
+  startButton.addEventListener('click',startGame);
+}
 function  startGame() {
   let overlayBlack = document.querySelector('.overlayBlack');
   let container = document.querySelector('.container');
   let paper = document.querySelector('.paper');
-
+  let explainOverlay = document.querySelector('.explain');
     container.classList.add('not-visible');
     overlayBlack.classList.remove('overlayActive');
   setTimeout(function() {
-    paper.classList.remove('closed');
-    RunTimer(true);
-  },500)
+    overlayBlack.classList.add('overlayActive');
+    explainOverlay.classList.remove('not-visible');
+
+
+      let trackpad = document.querySelectorAll('.pad');
+      for(let i = 0; i< trackpad.length; i++) {
+        setTimeout(function() {
+        trackpad[i].classList.add('show');
+        },i*700);
+      }
+
+
+    setTimeout(function() {
+      overlayBlack.classList.remove('overlayActive');
+      explainOverlay.classList.add('not-visible');
+      paper.classList.remove('closed');
+      RunTimer(true);
+    },7000);
+  },500);
+
 
 }
 
@@ -311,10 +341,17 @@ function  startGame() {
 let audio = document.querySelector('.bars-wrap');
 audio.addEventListener('click',stopAudio);
 function stopAudio() {
+  console.log('clicked');
   let state = audio.classList;
   let soundwave = document.querySelector('#bars');
+  let home = document.querySelector('.home');
   if(state.contains('muted')){
-    backgroundMusic();
+    if(home){
+      backgroundMusicOne();
+    }else{
+      backgroundMusic();
+    }
+
     state.remove('muted');
     soundwave.classList.remove('pause');
   }else{
@@ -326,10 +363,12 @@ function stopAudio() {
 
 
 let textopener = document.querySelector('.textopener');
-let paper = document.querySelector('.paper');
-let wrap = document.querySelector('.wrap');
-textopener.addEventListener('click',textopenerState);
-wrap.addEventListener('click',textopenerClose);
+if(textopener) {
+  let paper = document.querySelector('.paper');
+  let wrap = document.querySelector('.wrap');
+  textopener.addEventListener('click', textopenerState);
+  wrap.addEventListener('click', textopenerClose);
+}
 
 function textopenerState() {
   paper.classList.toggle('closed');
