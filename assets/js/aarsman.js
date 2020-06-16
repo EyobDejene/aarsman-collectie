@@ -61,7 +61,7 @@ function backgroundMusic() {
 function backgroundMusicOne() {
   let background = createjs.Sound.play(agent);
   background.loop = -1;
-  background.volume = 0.3;
+  background.volume = 0.2;
 }
 
 function muteMusic() {

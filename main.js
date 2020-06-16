@@ -16,62 +16,68 @@
 // });
 
 //initialize options here
-// var mprox = new mouseProximity(document.getElementsByClassName('cameras'),
-//     {
-//   clear: false,
-//   origin: 'center',
-//   showAttribute: false,
-//    //callback can be set here too
-// });
+//var mprox = new mouseProximity(document.querySelectorAll('.prox'), {clear:
+// false, showAttribute: false,});
 
 
-let playing_slow = false;
-let playing_fast = false;
+// let playing_slow = false;
+// let playing_fast = false;
 //callback
-var doSomething = function(el,distance){
-  // console.log(distance);
-  //do something with the element (el)
+// var doSomething = function(array,el,distance){
+//   console.log(array)
+//   // console.log(el,distance);
+//   let array2 = ['bokaal','brandkast'];
+//   let cursor = document.querySelector('.cursor-dot-outline');
+// // console.log(el);
+//   for(let i = 0; i < array2.length; i++) {
+//     if(el.classList.contains(array2[i]) && distance < 100)
+//     {
+//       cursor.style.backgroundColor = ["hsl(", 0, ",100%,50%)"].join("");
+//       console.log(array2[i]);
+//       return false;
+//     }else if(el.classList.contains(array2[i]) && distance > 100){
+//       console.log('buiten het gebied');
+//       cursor.style.backgroundColor = resetColor();
+//     }
+//
+
+
+    // if (el.classList.contains(array[i]) && distance < 100) {
+    //  // console.log(array[i]);
+    //   //cursor.style.backgroundColor = getColor(distance);
+    //   return false;
+    // }
+    // else if(el.className.split(" ")[i] === array[i] && distance > 100) {
+    //   console.log(false);
+    //  // cursor.style.backgroundColor = resetColor();
+    // }
+
+
+  // }
+
+ // do something with the element (el)
   //dow something with the distance (distance)
-  // console.log(distance);
-  // function getColor(value){
-  //   //value from 0 to 1
-  //   let percentage = Math.round(100/value*10);
-  //
-  //   var hue=((value)/10).toString(10);
-  //   // console.log(hue);
-  //   if(hue < 30) {
-  //
-  //     return ["hsl(", hue, ",100%,50%)"].join("");
-  //   }
-  //   if(hue > 6){
-  //     hue = 190;
-  //     return ["hsl(", hue, ",100%,50%)"].join("");
-  //   }
-  // }
-  //
-  // document.querySelector('.cursor-dot-outline').style.backgroundColor=getColor(distance);
-  // console.log(distance);
-  // if(distance < 100){
-  //   if (!playing_fast)
-  //   {
-  //     Chest("fast");
-  //     playing_fast = true;
-  //     playing_slow = false;
-  //   }
-  // }else {
-  //   if (!playing_slow)
-  //   {
-  //     Chest("steady");
-  //     playing_slow = true;
-  //     playing_fast = false;
-  //   }
-  // }
-
-
-}
+//   function getColor(value){
+//     //value from 0 to 1
+//     let percentage = Math.round(100/value*10);
+//     var hue=((value)/10).toString(10);
+//     // console.log(hue);
+//     if(hue < 100) {
+//       hue = 0;
+//       return ["hsl(", hue, ",100%,50%)"].join("");
+//     }
+//   }
+//
+//   function resetColor(){
+//     let hue = 192;
+//     return ["hsl(", hue, ",100%,50%)"].join("");
+//   }
+//
+// return false;
+// }
 
 //run the proximity tracker
-// mprox.run(doSomething);
+//mprox.run(doSomething);
 
 // //stop the proximity tracker
 // mprox.stop();
@@ -144,7 +150,7 @@ function reveal(state){
   }
 
   if(state === 'lampjes'){
-    reveal_text.innerHTML = "Rode redlampjes";
+    reveal_text.innerHTML = "Rode ledlampjes";
     reveal_image.src= 'assets/images/lampjes.jpg';
   }
 
@@ -288,6 +294,9 @@ function showScore(){
         'op te nemen en probeer verbanden te leggen.\n' +
         '\n\n Jouw tijd:';
     text = text.split("\n").join("<br />");
+    document.querySelector('.page .container .buttonWrapper a').classList.add('endgame');
+    document.querySelector('.page .container .buttonWrapper a').classList.remove('start');
+    document.querySelector('.founds').classList.add('not-visible');
     document.querySelector('.page .container .subtitle').innerHTML = text;
     document.querySelector('.page .container .scorewrap').innerHTML = '<span class="timeScore"><h2>'+score+'</h2></span>';
     document.querySelector('.page .container .buttonWrapper a').target= "_blank";
@@ -303,34 +312,40 @@ let startButton = document.querySelector('.start');
 if(startButton){
   startButton.addEventListener('click',startGame);
 }
+
+function hasClassName(element, className) {
+  return element.className.indexOf(className) > -1;
+}
+
 function  startGame() {
-  let overlayBlack = document.querySelector('.overlayBlack');
-  let container = document.querySelector('.container');
-  let paper = document.querySelector('.paper');
-  let explainOverlay = document.querySelector('.explain');
+  let startButton = document.querySelector('.start');
+  console.log(hasClassName(startButton,'endgame'));
+  if(!hasClassName(startButton,'endgame')) {
+    let overlayBlack = document.querySelector('.overlayBlack');
+    let container = document.querySelector('.container');
+    let paper = document.querySelector('.paper');
+    let explainOverlay = document.querySelector('.explain');
     container.classList.add('not-visible');
     overlayBlack.classList.remove('overlayActive');
-  setTimeout(function() {
-    overlayBlack.classList.add('overlayActive');
-    explainOverlay.classList.remove('not-visible');
-
+    setTimeout(function() {
+      overlayBlack.classList.add('overlayActive');
+      explainOverlay.classList.remove('not-visible');
 
       let trackpad = document.querySelectorAll('.pad');
-      for(let i = 0; i< trackpad.length; i++) {
+      for (let i = 0; i < trackpad.length; i++) {
         setTimeout(function() {
-        trackpad[i].classList.add('show');
-        },i*700);
+          trackpad[i].classList.add('show');
+        }, i * 700);
       }
 
-
-    setTimeout(function() {
-      overlayBlack.classList.remove('overlayActive');
-      explainOverlay.classList.add('not-visible');
-      paper.classList.remove('closed');
-      RunTimer(true);
-    },7000);
-  },500);
-
+      setTimeout(function() {
+        overlayBlack.classList.remove('overlayActive');
+        explainOverlay.classList.add('not-visible');
+        paper.classList.remove('closed');
+        RunTimer(true);
+      }, 7000);
+    }, 500);
+  }
 
 }
 
@@ -434,4 +449,24 @@ function RunTimer(state) {
 
 
 }
+
+let helpButton = document.querySelector('.founds');
+let overlay = document.querySelector('.explain');
+if(helpButton){
+  helpButton.addEventListener('click',openHelp);
+  overlay.addEventListener('click',openHelp)
+}
+function openHelp(){
+  let overlay = document.querySelector('.overlayBlack');
+  let explain = document.querySelector('.explain');
+  if(!explain.classList.contains('not-visible')){
+    overlay.classList.remove('overlayActive');
+    explain.classList.add('not-visible');
+  }else{
+    overlay.classList.toggle('overlayActive');
+    explain.classList.toggle('not-visible');
+  }
+
+}
+
 

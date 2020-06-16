@@ -11,14 +11,16 @@
 }(this, function (pluginName) {
   'use strict';
 
+
   var defaults = {
     clear: false,
     origin: 'center',
     showAttribute: true,
     cb: function(el,distance){
-      console.log(el.outerHTML + ', distance ' + distance);
+
     }
   };
+
 
   var mpos = {
     x: 0,
@@ -42,7 +44,9 @@
         extended[prop] = options[prop];
       }
     }
+
     return extended;
+
   };
 
 
@@ -85,6 +89,7 @@
 
     console.log('mouse proximity inititalized for:', els);
 
+
     this.calcDists = function(ev){
       mouseTrack(ev);
       if (plugin.options.clear){
@@ -107,7 +112,9 @@
        * @param e: element
        * @param distance: distance
        */
-      plugin.options.cb(e,e.mouseProximity);
+      let array = localStorage.getItem('arrayProx');
+      plugin.options.cb(array,e,e.mouseProximity);
+
     }
   }
 
