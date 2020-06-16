@@ -9,6 +9,7 @@ body{
     cursor: none;
     background-color: #000000;
     font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
 }
 
 @font-face {
@@ -793,7 +794,7 @@ section:after{
     height:100%;
     border-radius: 100%;
     overflow: hidden;
-    background-color: red;
+    background-color: transparent;
     position: absolute;
 }
 
@@ -1251,3 +1252,148 @@ input[type="radio"].toggle:checked + label:after {
     50%  { transform: translate3d(16px, 0, 0) scale(.5); }
     100% { transform: translate3d(0, 0, 0) scale(1); }
 }
+
+
+
+.explainControls{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+}
+
+.trackpad{
+    width: 12rem;
+    height: 8rem;
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    /*align-items: center;*/
+    -webkit-box-pack: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.pad{
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.show{
+    opacity: 1!important;
+}
+
+
+
+.drag .trackpad{
+    align-items: center;
+}
+
+.explainControls .zoomIn span,
+.explainControls .zoomUit span,
+.explainControls .drag span{
+    padding: .5rem;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 100;
+    font-size: 1.4rem;
+    color: #ffffff;
+    display: block;
+}
+
+.trackpad .points{
+    height: 2rem;
+    width: 2rem;
+    position: relative;
+    border-radius: 100%;
+    background-color: rgba(255,255,255,1);
+    margin: .5rem;
+}
+
+.zoomIn .trackpad .points{
+    animation: zoomIn 2s infinite, pulseIn 1s infinite;
+    /*transition: all 0.5s ease-in-out;*/
+}
+
+.zoomUit .trackpad .points{
+    margin-top: 5rem;
+    animation: zoomUit 2s infinite, pulseIn 1s infinite;
+    animation-delay: .5s;
+    /*transition: all 0.5s ease-in-out;*/
+}
+
+.drag .trackpad .points{
+    left: -3rem;
+    animation: drag 2s infinite, pulseIn 1s infinite;
+    /*transition: all 0.5s ease-in-out;*/
+}
+
+.zoomIn .trackpad .points:first-child{
+    /*margin-top: 1.5rem;*/
+}
+
+@keyframes zoomIn {
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    100%{
+        margin-top: 4.5rem;
+        opacity: 0;
+    }
+}
+
+@keyframes zoomUit {
+    0%{
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    100%{
+        margin-top: .5rem;
+        opacity: 0;
+    }
+}
+
+@keyframes drag {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+        left: -3rem;
+    }
+
+    70%{
+        opacity: 1;
+        left: 3rem;
+    }
+    100%{
+        left: 3rem;
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes pulseIn {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px  rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+}
+
+

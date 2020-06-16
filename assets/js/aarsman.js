@@ -7,6 +7,7 @@ let spy = "background";
 let score = "score";
 let wipe = "wipe";
 let victory = "victory";
+let agent = "agent";
 
 
 function loadSound () {
@@ -16,6 +17,7 @@ function loadSound () {
   createjs.Sound.registerSound("assets/audio/chest_fast.mp3", fast);
   createjs.Sound.registerSound("assets/audio/reveal2.mp3", unlock);
   createjs.Sound.registerSound("assets/audio/undercover.mp3", spy);
+  createjs.Sound.registerSound("assets/audio/spyagent2.mp3", agent);
   createjs.Sound.registerSound("assets/audio/score2.mp3", score);
   createjs.Sound.registerSound("assets/audio/wipe.mp3", wipe);
   createjs.Sound.registerSound("assets/audio/victory.mp3", victory);
@@ -46,7 +48,8 @@ function  WipeSound() {
 }
 
 function  VictorySound() {
-  createjs.Sound.play(victory);
+  let victorySound =  createjs.Sound.play(victory);
+  victorySound.volume = 0.3;
 }
 
 function backgroundMusic() {
@@ -55,8 +58,15 @@ function backgroundMusic() {
   background.volume = 0.1;
 }
 
+function backgroundMusicOne() {
+  let background = createjs.Sound.play(agent);
+  background.loop = -1;
+  background.volume = 0.3;
+}
+
 function muteMusic() {
   createjs.Sound.stop(spy);
+  createjs.Sound.stop(agent);
 }
 
 
